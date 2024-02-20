@@ -9,8 +9,7 @@ On Windows command prompt:
 ### `set NODE_OPTIONS=--openssl-legacy-provider`
 
 On PowerShell:
-### `$env:NODE_OPTIONS = "--openssl-legacy-provider"`
-
+    $env:NODE_OPTIONS = "--openssl-legacy-provider"
 ## To Run the project execute following commands in sequence
 
     1. npm install

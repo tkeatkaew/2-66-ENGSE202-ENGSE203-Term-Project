@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# STEP1 - Client
+## To Run the project execute following commands in sequence
+
+    1. npm install
+    2. npm run build
+    3. npm run start-server
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -7,12 +7,15 @@ https://medium.com/geekculture/build-and-deploy-a-web-application-with-react-and
 
 ### Before run this project, please run this command in your terminal
 On Unix-like (Linux, macOS, Git bash, etc.):
+   
     export NODE_OPTIONS=--openssl-legacy-provider
 
 On Windows command prompt:
+    
     set NODE_OPTIONS=--openssl-legacy-provider
 
 On PowerShell:
+    
     $env:NODE_OPTIONS = "--openssl-legacy-provider"
 
 ### To Run the project execute following commands in sequence
@@ -31,4 +34,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
     1. npm install
     2. npm run server
 
-    

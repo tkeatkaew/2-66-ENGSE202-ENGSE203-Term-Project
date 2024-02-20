@@ -1,7 +1,7 @@
 # STEP1
 
-This work is frok from
-https://medium.com/geekculture/build-and-deploy-a-web-application-with-react-and-node-js-express-bce2c3cfec32
+This work is a fork from:
+[Build and Deploy a Web Application With React and Node.js+Express](https://medium.com/geekculture/build-and-deploy-a-web-application-with-react-and-node-js-express-bce2c3cfec32)
 
 ## Client 
 

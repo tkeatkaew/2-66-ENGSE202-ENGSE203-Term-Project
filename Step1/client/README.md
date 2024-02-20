@@ -1,9 +1,20 @@
 # STEP1 - Client
+
+## Before run this project, please run this command in your terminal
+
+On Unix-like (Linux, macOS, Git bash, etc.):
+### `export NODE_OPTIONS=--openssl-legacy-provider`
+
+On Windows command prompt:
+### `set NODE_OPTIONS=--openssl-legacy-provider`
+
+On PowerShell:
+### `$env:NODE_OPTIONS = "--openssl-legacy-provider"`
+
 ## To Run the project execute following commands in sequence
 
     1. npm install
-    2. npm run build
-    3. npm run start-server
+    2. npm start
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

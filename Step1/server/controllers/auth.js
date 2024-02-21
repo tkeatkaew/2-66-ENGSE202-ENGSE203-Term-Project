@@ -10,39 +10,35 @@ const login = async (req, res = response) => {
   //----------------------
 
   let dbcon = mysql.createConnection(config);
-  let QUERY = "SELECT * FROM users where email = '" + email + "'";
 
-  dbcon.query(QUERY, (err, res) => {
-    if (err) {
-      console.log(err);
+  const userDetails = "SELECT * FROM users where email = '" + email + "'";
+  console.log(userDetails);
 
-      //*** */
-      return res.status(400).json({
-        msg: "User / Password are incorrect",
-      });
+  dbcon.query(userDetails, function (err, user) {
+    console.log(user);
 
-    } else {
-
-      //res.send(res); //****
-
-      // Ideally search the user in a database,
-      // throw an error if not found.
-
-      if (password !== "1234") { //****
+    if (user.length > 0) {
+      if (password !== user[0].password) {
         return res.status(400).json({
           msg: "User / Password are incorrect",
         });
       }
 
-      res.json({
-        name: "Test User",
-        token: "A JWT token to keep the user logged in.",
-        msg: "Successful login",
-      });
+      res.status(200).json({ user })
 
+      /*
+            res.json({
+              name: "Test User",
+              token: "A JWT token to keep the user logged in.",
+              msg: "Successful login",
+            });
+      */
+
+    } else {
+      // User not found
+      return res.status(401).json({ message: "User not found !" })
     }
-  });
-
+  })
 
 };
 

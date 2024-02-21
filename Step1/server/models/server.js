@@ -11,6 +11,9 @@ class Server {
       homepage: "/api/homepage",
     };
 
+    //paths.auth
+    //auth.homepage
+
     this.middlewares();
     this.routes();
   }

@@ -15,6 +15,12 @@ const login = async (req, res = response) => {
   dbcon.query(QUERY, (err, res) => {
     if (err) {
       console.log(err);
+
+      //*** */
+      return res.status(400).json({
+        msg: "User / Password are incorrect",
+      });
+
     } else {
 
       //res.send(res); //****
@@ -33,7 +39,6 @@ const login = async (req, res = response) => {
         token: "A JWT token to keep the user logged in.",
         msg: "Successful login",
       });
-
 
     }
   });

@@ -20,3 +20,6 @@ On PowerShell:
     1. npm install
     2. npm run build
     3. npm run start-server
+
+## Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

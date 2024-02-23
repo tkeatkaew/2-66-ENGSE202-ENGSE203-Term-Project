@@ -1,7 +1,7 @@
 // Import required modules
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
-const isDev = false;
+const isDev = true;
 
 // Initialize mainWindow variable
 let mainWindow;
@@ -10,8 +10,8 @@ let mainWindow;
 const createWindow = () => {
   // Configure the main window
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    width: 800,
+    height: 600,
     webPreferences: {
       nodeIntegration: true, // Enable Node.js integration
       enableRemoteModule: true, // Enable remote module

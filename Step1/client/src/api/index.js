@@ -1,5 +1,5 @@
 export async function login({ email, password }) {
-  return await fetch("/api/auth/login", {
+  return await fetch("http://api-termproject66.se-rmutl.net/api/auth/login", {
     method: "POST",
     body: JSON.stringify({ email, password }),
     headers: { "Content-Type": "application/json" },

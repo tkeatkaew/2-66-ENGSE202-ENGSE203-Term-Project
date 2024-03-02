@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "package-mac": "npm run build  && electron-packager . --overwrite --all --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +42,8 @@
   },
   "devDependencies": {
     "electron": "^29.0.1",
-    "electron-is-dev": "^3.0.1"
+    "electron-is-dev": "^3.0.1",
+    "electron-packager": "^17.1.2"
   },
   "homepage": "./",
   "main": "public/electron.js"

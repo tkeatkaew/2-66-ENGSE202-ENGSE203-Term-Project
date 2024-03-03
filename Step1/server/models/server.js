@@ -8,7 +8,7 @@ class Server {
     this.port = process.env.PORT || 8080;
     this.paths = {
       auth: "/api/auth",
-      homepage: "http://api-termproject66.se-rmutl.net/api/homepage",
+      homepage: "/api/homepage",
     };
 
     //paths.auth
@@ -33,8 +33,13 @@ class Server {
 
   // Bind controllers to routes
   routes() {
+    //this.app.use(this.paths.auth, require("../routes/auth"));
+    //this.app.use(this.paths.homepage, require("../routes/homepage"));
+
     this.app.use(this.paths.auth, require("../routes/auth"));
-    this.app.use(this.paths.homepage, require("../routes/homepage"));
+    this.app.use("/api/homepage", require("../routes/homepage"));
+    
+
 
     
     // Catch all requests that don't match any route

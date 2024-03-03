@@ -62,8 +62,9 @@ const users = async (req, res = response) => {
 const saveuser = async (req, res) => {
   const userData = req.body;
   console.log(userData);
-  saveUserData(userData);
 
+  res.status(200).json(await saveUserData(userData));
+  
 };
 
 // ฟังก์ชันสำหรับบันทึกข้อมูลผู้ใช้ในฐานข้อมูล
@@ -75,28 +76,60 @@ function saveUserData(userData) {
   const { medium, large, thumbnail } = picture;
   const dateOfBirth = new Date(dob.date).toISOString().slice(0, 19).replace('T', ' '); // แปลงรูปแบบของวันเกิด
 
-  console.log(userData);
-/*
-//สำหรับ database: 'user66007_db'
-  const sql = `INSERT INTO users (name_title, name_first, name_last, email, username, password, picture_large, date_of_birth) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?)`; //ต้องเพิ่ม column ให้ครบตามที่กำหนดไว้
+  console.log("saveUserData(userData): " + userData);
+  
+  /*
+  //สำหรับ database: 'user66007_db'
+    const sql = `INSERT INTO users (name_title, name_first, name_last, email, username, password, picture_large, date_of_birth) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)`; //ต้องเพิ่ม column ให้ครบตามที่กำหนดไว้
+  
+    let values = [title, first, last, email, username, password, large, dateOfBirth];
+  */
 
-  let values = [title, first, last, email, username, password, large, dateOfBirth];
-*/
-
-//สำหรับ database: 'term_project_db'
-const sql = `INSERT INTO users (name_title, name_first, name_last, email, username, password, picture_large) 
+  //สำหรับ database: 'term_project_db'
+  const sql = `INSERT INTO users (name_title, name_first, name_last, email, username, password, picture_large) 
 VALUES (?, ?, ?, ?, ?, ?, ?)`; //ต้องเพิ่ม column ให้ครบตามที่กำหนดไว้
 
-let values = [title, first, last, email, username, password, large];
+  let values = [title, first, last, email, username, password, large];
+  let sql_res;
 
+  return new Promise((resolve, reject) => {
 
-  connection.query(sql, values, (error, results, fields) => {
-    if (error) {
-      return console.error('Error saving user data:', error.message);
-    }
-    console.log('User data saved successfully!');
+    connection.query(sql, values, (error, results, fields) => {
+      if (error) {
+        //return console.error('Error saving user data:', error.message);
+
+        console.log("error: " + JSON.stringify(error))
+        connection.end();
+
+        return resolve({
+          error: true,
+          statusCode: 404,
+          returnCode: 0,
+          errMessage: error.code + ':' + error.sqlMessage
+        });
+
+      }
+      else
+        if (results.affectedRows > 0) {
+
+          console.log('User data saved successfully!');
+          console.log("results: " + JSON.stringify(results))
+          //connection.end();
+
+          return resolve({
+            error: false,
+            statusCode: 200,
+            returnCode: 1,
+            messsage: 'User was inserted',
+          });
+
+        }
+
+    });
+
   });
+
 }
 
 module.exports = {

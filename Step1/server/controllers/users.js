@@ -2,6 +2,26 @@ const fetch = require("cross-fetch");
 const { response } = require("express");
 const axios = require('axios');
 
+let mysql = require('mysql');
+const env = require('../env.js');
+const config = require('../dbconfig.js')[env];
+
+const connection = mysql.createConnection({
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.database
+})
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+  } else {
+    console.log('Connected to MySQL');
+  }
+});
+
+console.log('Running Environment: ' + env);
+
 const users = async (req, res = response) => {
 
   try {
@@ -39,6 +59,46 @@ const users = async (req, res = response) => {
 
 };
 
+const saveuser = async (req, res) => {
+  const userData = req.body;
+  console.log(userData);
+  saveUserData(userData);
+
+};
+
+// ฟังก์ชันสำหรับบันทึกข้อมูลผู้ใช้ในฐานข้อมูล
+function saveUserData(userData) {
+  const { gender, name, location, email, login, picture, dob } = userData;
+  const { title, first, last } = name;
+  const { country } = location;
+  const { username, password, md5, sha1, sha256, uuid } = login;
+  const { medium, large, thumbnail } = picture;
+  const dateOfBirth = new Date(dob.date).toISOString().slice(0, 19).replace('T', ' '); // แปลงรูปแบบของวันเกิด
+
+  console.log(userData);
+/*
+//สำหรับ database: 'user66007_db'
+  const sql = `INSERT INTO users (name_title, name_first, name_last, email, username, password, picture_large, date_of_birth) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)`; //ต้องเพิ่ม column ให้ครบตามที่กำหนดไว้
+
+  let values = [title, first, last, email, username, password, large, dateOfBirth];
+*/
+
+//สำหรับ database: 'term_project_db'
+const sql = `INSERT INTO users (name_title, name_first, name_last, email, username, password, picture_large) 
+VALUES (?, ?, ?, ?, ?, ?, ?)`; //ต้องเพิ่ม column ให้ครบตามที่กำหนดไว้
+
+let values = [title, first, last, email, username, password, large];
+
+
+  connection.query(sql, values, (error, results, fields) => {
+    if (error) {
+      return console.error('Error saving user data:', error.message);
+    }
+    console.log('User data saved successfully!');
+  });
+}
+
 module.exports = {
-  users,
+  users, saveuser,
 };

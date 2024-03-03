@@ -14,6 +14,7 @@ var dbconfig = {
         user: 'dbuser66',
         password: 'P@ssw0rd',
         database: 'term_project_db'
+        //database: 'user66007_db'
     }
 };
 module.exports = dbconfig;

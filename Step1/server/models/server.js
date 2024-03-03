@@ -46,6 +46,10 @@ class Server {
   //    res.send("<h1>Hello, This is API Back-end of Thanit.</h1>");
   //  });
     
+    this.app.get("/", (req, res) => {
+      res.send("<h1>Hello, This is API Back-end of Thanit.</h1>");
+    });
+
 
   }
 

@@ -8,7 +8,7 @@ class Server {
     this.port = process.env.PORT || 8080;
     this.paths = {
       auth: "/api/auth",
-      homepage: "/api/homepage",
+      homepage: "http://api-termproject66.se-rmutl.net/api/homepage",
     };
 
     //paths.auth

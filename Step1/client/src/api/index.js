@@ -18,7 +18,7 @@ export async function login({ email, password }) {
 }
 
 export async function searchArtworks({ keyword }) {
-  return await fetch(`/api/homepage/getArtworks/${keyword}`, {
+  return await fetch(`http://api-termproject66.se-rmutl.net/api/homepage/getArtworks/${keyword}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })

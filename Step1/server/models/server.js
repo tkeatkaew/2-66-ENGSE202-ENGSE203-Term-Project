@@ -43,14 +43,14 @@ class Server {
 
     
     // Catch all requests that don't match any route
-    this.app.get("*", (req, res) => {
+ //   this.app.get("*", (req, res) => {
       /*
       res.sendFile(
         path.join(__dirname, "../../client/build/index.html")
       );
       */
-      res.send("<h1>Hello, This is API Back-end of Thanit.</h1>");
-    });
+  //    res.send("<h1>Hello, This is API Back-end of Thanit.</h1>");
+  //  });
     
 
   }

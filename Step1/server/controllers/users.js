@@ -27,7 +27,9 @@ const users = async (req, res = response) => {
       throw new Error("Bad response from server");
     }
 
-    const { data = [] } = await resp.json();
+    //const { data = [] } = await resp.json();
+    const data = await resp.json();
+    //console.log("Users1: "+data);
 
     res.json(data);
 

@@ -9,7 +9,7 @@ router.post('/login',[
     validateInput
 ],login );
 */
-router.get("/users", users);
+router.get("/allusers", users);
 
 
 module.exports = router;
